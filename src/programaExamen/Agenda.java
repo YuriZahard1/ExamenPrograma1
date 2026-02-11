@@ -127,7 +127,14 @@ public class Agenda {
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				lblNumbuscar.setText(agenda.get(txtBuscar.getText()));
+				if(agenda.get(txtBuscar.getText()) == null) {
+					lblNumbuscar.setText("");
+					JOptionPane.showMessageDialog(frame, "No existe esta persona",
+				               "Datos Vacios", JOptionPane.ERROR_MESSAGE);
+				}else {
+					lblNumbuscar.setText(agenda.get(txtBuscar.getText()));
+					JOptionPane.showMessageDialog(null, "Busqueda correcta");
+				}
 			}
 		});
 		btnBuscar.setBounds(12, 185, 105, 27);
@@ -145,7 +152,14 @@ public class Agenda {
 		JButton btnBorrar = new JButton("Borrar");
 		btnBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				agenda.remove(txtBorrar.getText());
+				if(agenda.get(txtBorrar.getText()) == null) {
+					JOptionPane.showMessageDialog(frame, "No existe esta persona",
+				               "Datos Vacios", JOptionPane.ERROR_MESSAGE);
+					lblBuscar.setText("");
+				}else {
+					agenda.remove(txtBorrar.getText());
+					JOptionPane.showMessageDialog(null, "Borrado correctamente");
+				}
 			}
 		});
 		btnBorrar.setBounds(204, 233, 105, 27);
